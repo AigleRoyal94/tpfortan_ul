@@ -15,19 +15,25 @@ program test
   case (CARRE)
     print*, "Calcul de l'aire d'un carré"
     call calculairecarre(resultat)
-    print*, "Aire du carré = ", resultat
+    print*, "L'aire du carré = ", resultat
   case (RECTANGLE)
     print*, "Calcul de l'aire d'un rectangle"
     call calculAireRectangle(resultat)
-    print*, "Aire du rectangle = ", resultat
+    print*, "L'aire du rectangle = ", resultat
   case (PR)
-    print*, "Calcul de l'air d'un Parallélépipède rectangle"
+    print*, "Calcul de l'aire d'un Parallélépipède rectangle"
+    call calculAirePR(resultat)
+    print*, "L'aire du parallélépipède rectangle = ", resultat
   case (PL)
-    print*, "Calcul de l'air d'un Parallélogramme"
+    print*, "Calcul de l'aire d'un Parallélogramme"
+    call calculAirePL(resultat)
+    print*, "L'aire du parallélograme = ", resultat
   case (LOSANGE)
     print*, "Calcul de l'air d'un losange"
+    call calculAireLosange(resultat)
+    print*, "L'aire du losange = ", resultat
   case default
-    print*, "default case"
+    print*, "Vous n'êtes dans aucun cas concerné"
   end select
 
   contains
@@ -63,4 +69,51 @@ program test
     end if
   end subroutine calculAireRectangle
 
+  subroutine calculAirePR(surface)
+    implicit none
+    double precision::largeur, longueur, hauteur
+    double precision, intent(out):: surface
+    print*, "Entrer la valeur de la largeur"
+    read*, largeur
+    print*, "Entrer la valeur de la longueur"
+    read*, longueur
+    print*, "Entrer la valeur de la hauteur"
+    read*, hauteur
+
+    if (largeur < 0 .or. longueur < 0 .or. hauteur < 0) then
+      print*, "Ni la largeur ni la longueur ni la hauteur ne peut avoir une valeur négative"
+    else
+      surface = 2*hauteur*largeur + 2*hauteur*longueur + 2*largeur*longueur
+    end if
+  end subroutine calculAirePR
+
+  subroutine calculAirePL(surface)
+    implicit none
+    double precision::base, hauteur
+    double precision, intent(out)::surface
+    print*, "Entrer la valeur de la base"
+    read*, base
+    print*, "Entrer la valeur de la hauteur"
+    read*, hauteur
+    if (base < 0 .or. hauteur < 0) then
+      print*, "Ni la base ni la hauteur ne peut être négatif"
+    else
+      surface = base * hauteur
+    end if
+  end subroutine calculAirePL
+
+  subroutine calculAireLosange(surface)
+    implicit none
+    double precision::diagonal_1, diagonal_2
+    double precision, intent(out)::surface
+    print*, "Entrer la valeur de la petite diagonale"
+    read*, diagonal_1
+    print*, "Entrer la valeur de la grande diagonale"
+    read*, diagonal_2
+    if (diagonal_1 < 0 .or. diagonal_2 < 0) then
+      print*, "Aucune diagonale ne doit être négatif"
+    else
+      surface = (diagonal_1 * diagonal_2)/2
+    end if
+  end subroutine calculAireLosange
 end program test
