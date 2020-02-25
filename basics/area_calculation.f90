@@ -1,4 +1,4 @@
-program test
+program area
   implicit none
   double precision::resultat
   integer::cas
@@ -116,4 +116,4 @@ program test
       surface = (diagonal_1 * diagonal_2)/2
     end if
   end subroutine calculAireLosange
-end program test
+end program area
