@@ -8,7 +8,7 @@ program main_fibonacci
     print*, "La somme de fibonacci pour n = ", n, "est S = ", output
     rec = recursive_fibonacci(n)
     print*, "La somme de fibonacci pour n = ", n, "est S = ", rec
-    
+
     contains
     function fibonacci(n)
         implicit none
@@ -46,4 +46,6 @@ program main_fibonacci
             output = recursive_fibonacci(n-1) + recursive_fibonacci(n-2)
         end if
     end function recursive_fibonacci
+
+    !will add something new
 end program main_fibonacci
